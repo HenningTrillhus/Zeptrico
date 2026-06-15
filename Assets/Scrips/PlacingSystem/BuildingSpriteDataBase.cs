@@ -6,6 +6,8 @@ public class BuildingSpriteDataBase : MonoBehaviour
 
     public Sprite[] farmSprites;
 
+    public GameObject FarmPrefab;
+
     void Awake()
     {
         Instance = this;

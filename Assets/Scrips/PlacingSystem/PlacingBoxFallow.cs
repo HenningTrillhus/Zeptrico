@@ -4,7 +4,15 @@ using UnityEngine.InputSystem;
 public class PlacingBoxFallow : MonoBehaviour
 {
     private Camera cam;
-    public bool isPlacing = true;
+    private SpriteRenderer spriteRenderer;
+
+    private Vector3 lastSnappedPos;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    
 
     void Start()
     {
@@ -13,7 +21,7 @@ public class PlacingBoxFallow : MonoBehaviour
 
     void Update()
     {
-        gameObject.SetActive(isPlacing);
+        spriteRenderer.enabled = BuildingManager.Instance.isPlacing;
         Vector2 screenPos = Mouse.current.position.ReadValue();
         Vector3 worldPos = cam.ScreenToWorldPoint(screenPos);
 
@@ -24,5 +32,14 @@ public class PlacingBoxFallow : MonoBehaviour
         );
 
         transform.position = snappedPos;
+
+        if (snappedPos != lastSnappedPos)
+        {
+            lastSnappedPos = snappedPos;
+            if (BuildingManager.Instance.isPlacing)
+            {
+                BuildingSpriteDisplay.Instance.checkIfPosIsOccupide(snappedPos);
+            }
+        }
     }
 }
