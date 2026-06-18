@@ -33,7 +33,7 @@ public class BuildingSpriteDisplay : MonoBehaviour
             for (int j = 0; j < BuildingManager.Instance.buildingWidth; j++)
             {
                 Vector2Int tilePos = new Vector2Int((int)pos.x + i, (int)pos.y + j);
-                if (OcupideSpace.Instance.IsOccupied(tilePos))
+                if (occupiedSpaceLogic.Instance.IsOccupied(tilePos))
                 {
                     GetComponent<SpriteRenderer>().color = Color.red;
                     return;

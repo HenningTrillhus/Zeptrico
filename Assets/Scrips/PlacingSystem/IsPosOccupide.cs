@@ -27,7 +27,7 @@ public class IsPosOccupide : MonoBehaviour
         {
             for (int y = 0; y < BuildingManager.Instance.buildingWidth; y++)
             {
-                if (OcupideSpace.Instance.IsOccupied(new Vector2Int(baseX + x, baseY + y)))
+                if (occupiedSpaceLogic.Instance.IsOccupied(new Vector2Int(baseX + x, baseY + y)))
                 {
                     areaFree = false;
                     Debug.Log("Tile is already occupied!");

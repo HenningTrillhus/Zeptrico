@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OcupideSpace : MonoBehaviour
+public class occupiedSpaceLogic : MonoBehaviour
 {
-    public static OcupideSpace Instance;
+    public static occupiedSpaceLogic Instance;
 
     private Dictionary<Vector2Int, GameObject> occupiedTiles = new Dictionary<Vector2Int, GameObject>();
 

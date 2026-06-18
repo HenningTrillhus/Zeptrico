@@ -44,7 +44,7 @@ public class PlacingBuilding : MonoBehaviour
             {
                 for (int j = 0; j < BuildingManager.Instance.buildingWidth; j++)
                 {
-                    OcupideSpace.Instance.OccupyTile(new Vector2Int(baseX + i, baseY + j), newBuilding);
+                    occupiedSpaceLogic.Instance.OccupyTile(new Vector2Int(baseX + i, baseY + j), newBuilding);
                 }
             }
             BuildingManager.Instance.isPlacing = false;

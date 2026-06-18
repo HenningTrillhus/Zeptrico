@@ -44,5 +44,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: NPCLegs
+    uniqueID: 1839929675
+    locked: 0
+  - name: NPCBody
+    uniqueID: 2259317761
+    locked: 0
+  - name: NPCHead
+    uniqueID: 3994211099
+    locked: 0
   m_RenderingLayers:
   - Default
