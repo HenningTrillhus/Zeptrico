@@ -5,14 +5,14 @@ public class Pathfinding : MonoBehaviour
 {
 
 
-    private Vector3 GoalPos = new Vector3(8, 10, 0);
+    private Vector3 GoalPos = new Vector3(58, 60, 0);
     private Vector3 pos;
 
     //Walkable mapSize
-    private int minX = -50;
-    private int maxX = 50;
-    private int minY = -50;
-    private int maxY = 50;
+    private int minX = 0;
+    private int maxX = 100;
+    private int minY = 0;
+    private int maxY = 100;
 
     private List<Vector2Int> currentPath;
     private int pathIndex;
@@ -55,6 +55,16 @@ public class Pathfinding : MonoBehaviour
         pathIndex = 0;
     }
 
+    public void SetGoalPosition(Vector3 newGoal)
+    {
+        Debug.Log("SetGoalPosition called with: " + newGoal);
+        GoalPos = newGoal;
+        Vector2Int posGrid = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        Vector2Int goalGrid = new Vector2Int((int)GoalPos.x, (int)GoalPos.y);
+        findPath(posGrid, goalGrid);
+        pathIndex = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -86,6 +96,9 @@ public class Pathfinding : MonoBehaviour
 
     void findPath(Vector2Int startPos, Vector2Int goalPos)
     {
+        openSet.Clear();
+        closedSet.Clear();
+
         Node startNode = GetNode(startPos);
         startNode.GCost = 0;
         startNode.HCost = heuristic(startPos, goalPos);
@@ -114,11 +127,11 @@ public class Pathfinding : MonoBehaviour
             if (currentNode.Position == goalPos)
             {
                 currentPath = RetracePath(startNode, currentNode);
-                foreach (Vector2Int step in currentPath)
-                {
+                Debug.Log("Path found! Length: " + currentPath.Count);
+                foreach (var step in currentPath)
                     Debug.Log(step);
-                }
                 break;
+
             }
 
             // 4. Check neighbors

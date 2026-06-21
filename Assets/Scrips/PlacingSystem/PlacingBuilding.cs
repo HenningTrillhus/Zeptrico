@@ -40,6 +40,7 @@ public class PlacingBuilding : MonoBehaviour
         if (IsPosOccupide.Instance.CheckIfPosIsOccupide(position))
         {
             GameObject newBuilding = Instantiate(BuildingSpriteDataBase.Instance.FarmPrefab, position, Quaternion.identity);
+            WorkerDataBase.instance.workPlaces.Add(new WorkerDataBase.WorkPlace {id = WorkerDataBase.instance.getID(), pos = position, buildingType = "Farm"});
             for (int i = 0; i < BuildingManager.Instance.buildingHight; i++)
             {
                 for (int j = 0; j < BuildingManager.Instance.buildingWidth; j++)

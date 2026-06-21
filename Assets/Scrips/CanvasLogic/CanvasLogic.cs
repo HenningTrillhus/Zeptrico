@@ -2,14 +2,25 @@ using UnityEngine;
 
 public class CanvasLogic : MonoBehaviour
 {
+    public static CanvasLogic instance;
+
     public GameObject BuildPanel;
+    public GameObject npcDisplayUI;
+    public GameObject farmDisplayUI;
 
     private bool buildingPanelVisible = false;
+    private bool npcDisplayVisible = false;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         BuildPanel.SetActive(false); 
+        npcDisplayUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,5 +34,36 @@ public class CanvasLogic : MonoBehaviour
         buildingPanelVisible = !buildingPanelVisible;
         BuildPanel.SetActive(buildingPanelVisible);
         
+    }
+
+    public void OpenShowNPCDisplay()
+    {
+        npcDisplayVisible = !npcDisplayVisible;
+        npcDisplayUI.SetActive(npcDisplayVisible);
+        if (npcDisplayVisible)
+        {
+            ShowNPCs.instance.ShowNPCDisplay(false);
+        }
+        else
+        {
+            // Clear NPC display when hiding
+            foreach (Transform child in ShowNPCs.instance.ContainerTransform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    public void openShowNPCForWorkerPick()
+    {
+        npcDisplayVisible = !npcDisplayVisible;
+        npcDisplayUI.SetActive(npcDisplayVisible);
+        ShowNPCs.instance.ShowNPCDisplay(true);
+        farmDisplayUI.SetActive(false);
+    }
+
+    public void openShowFarmDisplay()
+    {
+        farmDisplayUI.SetActive(true);
     }
 }

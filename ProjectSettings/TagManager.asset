@@ -53,5 +53,11 @@ TagManager:
   - name: NPCHead
     uniqueID: 3994211099
     locked: 0
+  - name: NPCHoverBox
+    uniqueID: 3902663639
+    locked: 0
+  - name: NPCHoverText
+    uniqueID: 2746568549
+    locked: 0
   m_RenderingLayers:
   - Default
