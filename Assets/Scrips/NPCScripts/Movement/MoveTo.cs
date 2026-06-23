@@ -42,49 +42,66 @@ public class MoveTo : MonoBehaviour
                 if (MoveNPCToWork.instance.nextPositionToWalkTo == position)
                 {
                     Debug.Log("NPC with id " + npc.Stats.NPCid + " is moving to: " + position);
-                    npc.findEntringPoint(position);
+                    npc.findEntringPoint(position,BuildingManager.Instance.buildingWidth, BuildingManager.Instance.buildingHight);
                 }
             // Here you would add the logic to move your NPC to the specified position
             }
         }
     }
 
-    void findEntringPoint(Vector3 pos)
+
+    void findEntringPoint(Vector3 pos, int width, int height)
     {
-        Vector3 testPos = new Vector3(pos.x, pos.y +2f, 0);
-        if (IsPosOccupide.Instance.CheckIfPosIsOccupide(testPos))
+        Debug.Log("findEntringPoint called at: " + pos + " width: " + width + " height: " + height);
+
+        // Define the full footprint of the object
+        // e.g. width=2, height=1 means tiles (0,0) and (1,0) relative to bottomLeft
+
+        // Top row (scans left to right)
+        for (int x = 0; x <= width; x++)
         {
-            MoveNPCToPosition(testPos);
+            Vector3 tile = new Vector3(pos.x + x, pos.y + height, 0);
+            if (!IsPosOccupide.Instance.CheckIfPosIsOccupide(tile)){
+                Debug.Log("Found entry point at: " + tile);
+                MoveNPCToPosition(tile);
+                return;
+            }
         }
-        else
+
+        // Right side (scans top to bottom)
+        for (int y = height - 1; y >= 0; y--)
         {
-            Vector3 testPos2 = new Vector3(pos.x +1f, pos.y +2f, 0);
-            if (IsPosOccupide.Instance.CheckIfPosIsOccupide(testPos2))
-            {
-                MoveNPCToPosition(testPos2);
+            Vector3 tile = new Vector3(pos.x + width, pos.y + y, 0);
+            if (!IsPosOccupide.Instance.CheckIfPosIsOccupide(tile)){
+                Debug.Log("Found entry point at: " + tile);
+                MoveNPCToPosition(tile);
+                return;
             }
-            else
-            {
-                Vector3 testPos3 = new Vector3(pos.x, pos.y -1f, 0);
-                if (IsPosOccupide.Instance.CheckIfPosIsOccupide(testPos3))
-                {
-                    MoveNPCToPosition(testPos3);
-                }
-                else
-                {
-                    Vector3 testPos4 = new Vector3(pos.x +1f, pos.y -1f, 0);
-                    if (IsPosOccupide.Instance.CheckIfPosIsOccupide(testPos4))
-                    {
-                        MoveNPCToPosition(testPos4);
-                    }
-                    else
-                    {
-                        MoveNPCToPosition(testPos);
-                    }
-                }
-            }
-            // Here you would add logic to find an alternative position if the target is occupied
         }
+
+        // Bottom row (scans right to left)
+        for (int x = width; x >= -1; x--)
+        {
+            Vector3 tile = new Vector3(pos.x + x, pos.y - 1, 0);
+            if (!IsPosOccupide.Instance.CheckIfPosIsOccupide(tile)){
+                Debug.Log("Found entry point at: " + tile);
+                MoveNPCToPosition(tile);
+                return;
+            }
+        }
+
+        // Left side (scans bottom to top)
+        for (int y = 0; y <= height - 1; y++)
+        {
+            Vector3 tile = new Vector3(pos.x - 1, pos.y + y, 0);
+            if (!IsPosOccupide.Instance.CheckIfPosIsOccupide(tile)){
+                Debug.Log("Found entry point at: " + tile);
+                MoveNPCToPosition(tile);
+                return;
+            }
+        }
+
+        Debug.LogWarning("No available entry point found for the object at position: " + pos);
     }
 
     void MoveNPCToPosition(Vector3 position)

@@ -49,10 +49,10 @@ public class Pathfinding : MonoBehaviour
     {
         pos = transform.position;
         //converting to grid coordinates (no decimals)
-        Vector2Int posGrid = new Vector2Int((int)pos.x, (int)pos.y);
+        /*Vector2Int posGrid = new Vector2Int((int)pos.x, (int)pos.y);
         Vector2Int goalGrid = new Vector2Int((int)GoalPos.x, (int)GoalPos.y);
         findPath(posGrid, goalGrid);
-        pathIndex = 0;
+        pathIndex = 0;*/
     }
 
     public void SetGoalPosition(Vector3 newGoal)
