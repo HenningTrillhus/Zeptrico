@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 2042513217647945343}
   - component: {fileID: 772625527801866090}
   - component: {fileID: 3330262767159829040}
+  - component: {fileID: 3817024114813799545}
   m_Layer: 0
   m_Name: NPCBeta
   m_TagString: Untagged
@@ -264,6 +265,7 @@ MonoBehaviour:
   FemaleHead1: {fileID: 21300000, guid: d424b0a47c2a6d343ba710b043199f21, type: 3}
   gender: 
   NPCid: 0
+  colorOfClothes: 0
 --- !u!114 &3330262767159829040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +280,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveTo
   pathfinding: {fileID: 3130109878983847975}
   Stats: {fileID: 772625527801866090}
+--- !u!114 &3817024114813799545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980694378637433364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc193631c58bfd428266883a59aae52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtWorkSite
 --- !u!1 &2472552790814022137
 GameObject:
   m_ObjectHideFlags: 0

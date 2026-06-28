@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Pathfinding : MonoBehaviour
 {
-
+    private AtWorkSite atWorkSite;
 
     private Vector3 GoalPos = new Vector3(58, 60, 0);
     private Vector3 pos;
@@ -20,6 +20,9 @@ public class Pathfinding : MonoBehaviour
     public float rotationSpeed = 10f;
 
     public bool isMoving = false;
+
+    private bool DoneMoving = true;
+    private int nextBuildingID;
 
 
 
@@ -47,6 +50,7 @@ public class Pathfinding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        atWorkSite = GetComponent<AtWorkSite>();
         pos = transform.position;
         //converting to grid coordinates (no decimals)
         /*Vector2Int posGrid = new Vector2Int((int)pos.x, (int)pos.y);
@@ -55,10 +59,12 @@ public class Pathfinding : MonoBehaviour
         pathIndex = 0;*/
     }
 
-    public void SetGoalPosition(Vector3 newGoal)
+    public void SetGoalPosition(Vector3 newGoal, int buildingID)
     {
+        DoneMoving = false;
         Debug.Log("SetGoalPosition called with: " + newGoal);
         GoalPos = newGoal;
+        nextBuildingID = buildingID;
         Vector2Int posGrid = new Vector2Int((int)transform.position.x, (int)transform.position.y);
         Vector2Int goalGrid = new Vector2Int((int)GoalPos.x, (int)GoalPos.y);
         findPath(posGrid, goalGrid);
@@ -70,6 +76,12 @@ public class Pathfinding : MonoBehaviour
     {
         if (currentPath == null || pathIndex >= currentPath.Count){
             isMoving = false;
+            if (currentPath != null && pathIndex >= currentPath.Count && !DoneMoving) 
+            {
+                Debug.Log("Reached the end of the path.");
+                DoneMoving = true;
+                atWorkSite.AtWork(nextBuildingID);
+            }
             return; // no path, or already finished
         }
         

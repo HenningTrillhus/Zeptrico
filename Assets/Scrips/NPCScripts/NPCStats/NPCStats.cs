@@ -55,7 +55,7 @@ public class NPCStats : MonoBehaviour
 
     private SpriteRenderer sr;
     
-    void Awake()
+    void Start()
     {
         sr = GetComponent<SpriteRenderer>();
 
@@ -104,8 +104,8 @@ public class NPCStats : MonoBehaviour
                     sr.sprite = MaleHead5;
                     break;
                 case 6:
-                sr.sprite = MaleHead6;
-                break;
+                    sr.sprite = MaleHead6;
+                    break;
             }
         }
         else
@@ -116,10 +116,6 @@ public class NPCStats : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

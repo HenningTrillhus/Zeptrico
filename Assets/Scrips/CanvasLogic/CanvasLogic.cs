@@ -7,6 +7,7 @@ public class CanvasLogic : MonoBehaviour
     public GameObject BuildPanel;
     public GameObject npcDisplayUI;
     public GameObject farmDisplayUI;
+    public GameObject woodCutterDisplayUI;
 
     private bool buildingPanelVisible = false;
     private bool npcDisplayVisible = false;
@@ -65,5 +66,27 @@ public class CanvasLogic : MonoBehaviour
     public void openShowFarmDisplay()
     {
         farmDisplayUI.SetActive(true);
+    }
+
+    public void closeBuildPanel()
+    {
+        buildingPanelVisible = false;
+        BuildPanel.SetActive(false);
+    }
+
+    public void closeShowNPCDisplay()
+    {
+        npcDisplayVisible = false;
+        npcDisplayUI.SetActive(false);
+    }
+
+    public void closeShowFarmDisplay()
+    {
+        farmDisplayUI.SetActive(false);
+    }
+
+    public void closeWoodCutterDisplay()
+    {
+        woodCutterDisplayUI.SetActive(false);
     }
 }

@@ -25,6 +25,19 @@ public class MoveNPCToWork : MonoBehaviour
 
     public void makeNPCMoveToWork(int NPCID)
     {
-        MoveTo.NPCMoveTO(nextPositionToWalkTo, NPCID);
+        MoveTo.NPCMoveTO(nextPositionToWalkTo, NPCID, getBuldingIDFromPos(nextPositionToWalkTo));
+    }
+
+    public int getBuldingIDFromPos(Vector3 position)
+    {
+        foreach (var building in BuildingManager.Instance.buildings)
+        {
+            if (building.position == position)
+            {
+                return building.buildingID; // Return the building ID if the position matches
+                // You can now use building.buildingID as needed
+            }
+        }
+        return -1; // Return -1 if no building is found at the given position
     }
 }

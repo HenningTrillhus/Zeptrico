@@ -9,6 +9,8 @@ public class MoveTo : MonoBehaviour
 
     public NPCStats Stats;
 
+    private int nextBuildingID;
+
     //public static event System.Action allNPCReact;
 
     void OnEnable()
@@ -33,7 +35,7 @@ public class MoveTo : MonoBehaviour
         
     }
 
-    public static void NPCMoveTO(Vector3 position, int npcID)
+    public static void NPCMoveTO(Vector3 position, int npcID, int buildingID)
     {
         foreach (var npc in moveNPC)
         {
@@ -42,6 +44,7 @@ public class MoveTo : MonoBehaviour
                 if (MoveNPCToWork.instance.nextPositionToWalkTo == position)
                 {
                     Debug.Log("NPC with id " + npc.Stats.NPCid + " is moving to: " + position);
+                    npc.nextBuildingID = buildingID;
                     npc.findEntringPoint(position,BuildingManager.Instance.buildingWidth, BuildingManager.Instance.buildingHight);
                 }
             // Here you would add the logic to move your NPC to the specified position
@@ -106,8 +109,10 @@ public class MoveTo : MonoBehaviour
 
     void MoveNPCToPosition(Vector3 position)
     {
-        pathfinding.SetGoalPosition(position);
+        pathfinding.SetGoalPosition(position, nextBuildingID);
     }
+
+    
 
     
 }

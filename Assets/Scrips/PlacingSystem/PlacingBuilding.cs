@@ -41,6 +41,8 @@ public class PlacingBuilding : MonoBehaviour
         {
             GameObject newBuilding = Instantiate(BuildingSpriteDataBase.Instance.FarmPrefab, position, Quaternion.identity);
             WorkerDataBase.instance.workPlaces.Add(new WorkerDataBase.WorkPlace {id = WorkerDataBase.instance.getID(), pos = position, buildingType = "Farm"});
+            BuildingManager.Instance.buildings.Add(new BuildingManager.building { BuildingName = BuildingManager.Instance.placingBuildingName, buildingID = BuildingManager.Instance.placingBuildingid, position = position, width = BuildingManager.Instance.buildingWidth, height = BuildingManager.Instance.buildingHight });
+            Debug.Log("Building Placed at: " + position + " with ID: " + BuildingManager.Instance.placingBuildingid);
             for (int i = 0; i < BuildingManager.Instance.buildingHight; i++)
             {
                 for (int j = 0; j < BuildingManager.Instance.buildingWidth; j++)
