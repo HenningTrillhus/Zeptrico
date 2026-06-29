@@ -68,6 +68,11 @@ public class CanvasLogic : MonoBehaviour
         farmDisplayUI.SetActive(true);
     }
 
+    public void openShowWoodCutterDisplay()
+    {
+        woodCutterDisplayUI.SetActive(true);
+    }
+
     public void closeBuildPanel()
     {
         buildingPanelVisible = false;

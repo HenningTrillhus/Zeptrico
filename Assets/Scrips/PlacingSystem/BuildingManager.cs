@@ -7,10 +7,15 @@ public class BuildingManager : MonoBehaviour
     public static BuildingManager Instance;
 
     public int placingBuildingid = 0;
+    public int bulldingTypeID = 0;
     public string placingBuildingName = "";
     public bool isPlacing = false;
     public int buildingHight = 2;
     public int buildingWidth = 2;
+    public GameObject prefab;
+
+    public GameObject FarmPrefab;
+    public GameObject WoodCutterPrefab;
 
     public class building
     {
@@ -38,19 +43,29 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceFarm()
     {
+        bulldingTypeID = 0;
         placingBuildingName = "Farm";
         isPlacing = true;
         placingBuildingid = buildings.Count > 0 ? buildings.Max(b => b.buildingID) + 1 : 1;
         buildingHight = 2;
         buildingWidth = 2;
+        prefab = FarmPrefab;
     }
 
     public void PlaceWoodCutter()
     {
+        bulldingTypeID = 1;
         placingBuildingName = "WoodCutter";
         isPlacing = true;
         placingBuildingid = buildings.Count > 0 ? buildings.Max(b => b.buildingID) + 1 : 1;
         buildingHight = 3;
         buildingWidth = 3;
+        prefab = WoodCutterPrefab;
+    }
+
+    public string getBuildingTypeByID(int buildingID)
+    {
+        var building = buildings.FirstOrDefault(b => b.buildingID == buildingID);
+        return building != null ? building.BuildingName : null;
     }
 }

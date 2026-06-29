@@ -21,7 +21,7 @@ public class BuildingSpriteDisplay : MonoBehaviour
     {
         if (BuildingManager.Instance.isPlacing)
         {
-            Sprite sprite = BuildingSpriteDataBase.Instance.GetSprite(0);
+            Sprite sprite = BuildingSpriteDataBase.Instance.GetSprite(BuildingManager.Instance.bulldingTypeID);
             GetComponent<SpriteRenderer>().sprite = sprite;
         }
     }

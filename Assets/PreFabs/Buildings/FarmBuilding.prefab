@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1216433688543469401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 4421769982456172730}
   - component: {fileID: 7391818040693986353}
   - component: {fileID: 2732509725422087079}
-  - component: {fileID: 8506268497082926177}
+  - component: {fileID: 78581431658380212}
   m_Layer: 0
   m_Name: FarmBuilding
   m_TagString: Untagged
@@ -236,7 +236,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.25, y: 0.25}
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -245,7 +245,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &8506268497082926177
+--- !u!114 &78581431658380212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

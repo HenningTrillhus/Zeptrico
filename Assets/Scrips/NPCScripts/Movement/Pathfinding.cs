@@ -24,6 +24,8 @@ public class Pathfinding : MonoBehaviour
     private bool DoneMoving = true;
     private int nextBuildingID;
 
+    private SpriteRenderer[] allRenderers;
+
 
 
     public class Node
@@ -50,6 +52,7 @@ public class Pathfinding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        allRenderers = GetComponentsInChildren<SpriteRenderer>();
         atWorkSite = GetComponent<AtWorkSite>();
         pos = transform.position;
         //converting to grid coordinates (no decimals)
@@ -69,6 +72,8 @@ public class Pathfinding : MonoBehaviour
         Vector2Int goalGrid = new Vector2Int((int)GoalPos.x, (int)GoalPos.y);
         findPath(posGrid, goalGrid);
         pathIndex = 0;
+        foreach (SpriteRenderer sr in allRenderers)
+            sr.enabled = true;
     }
 
     // Update is called once per frame
@@ -140,8 +145,8 @@ public class Pathfinding : MonoBehaviour
             {
                 currentPath = RetracePath(startNode, currentNode);
                 Debug.Log("Path found! Length: " + currentPath.Count);
-                foreach (var step in currentPath)
-                    Debug.Log(step);
+                /*foreach (var step in currentPath)
+                    Debug.Log(step);*/
                 break;
 
             }

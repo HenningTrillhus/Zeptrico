@@ -3,6 +3,20 @@ using System.Collections.Generic;
 
 public class TreeSpawner : MonoBehaviour
 {
+    public static TreeSpawner Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public GameObject treePrefab;
 
     private int Xmin = 0;
@@ -15,7 +29,7 @@ public class TreeSpawner : MonoBehaviour
     private int YCapMin = 35;
     private int YCapMax = 65;
 
-    List<Vector3> treePositions = new List<Vector3>();
+    public List<Vector3> treePositions = new List<Vector3>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

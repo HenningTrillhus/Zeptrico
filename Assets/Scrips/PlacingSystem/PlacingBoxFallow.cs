@@ -26,8 +26,8 @@ public class PlacingBoxFallow : MonoBehaviour
         Vector3 worldPos = cam.ScreenToWorldPoint(screenPos);
 
         Vector3 snappedPos = new Vector3(
-            Mathf.Round(worldPos.x+0.1f),
-            Mathf.Round(worldPos.y+0.5f),
+            Mathf.Round(worldPos.x),
+            Mathf.Round(worldPos.y),
             0
         );
 

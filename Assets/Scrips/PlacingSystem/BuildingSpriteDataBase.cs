@@ -4,9 +4,10 @@ public class BuildingSpriteDataBase : MonoBehaviour
 {
     public static BuildingSpriteDataBase Instance;
 
-    public Sprite[] farmSprites;
+    public Sprite farmSprites;
+    public Sprite WoodCutterSprite;
 
-    public GameObject FarmPrefab;
+    
 
     void Awake()
     {
@@ -27,11 +28,17 @@ public class BuildingSpriteDataBase : MonoBehaviour
 
     public Sprite GetSprite(int id)
     {
-        if (id < 0 || id >= farmSprites.Length)
+        if (id == 0)
         {
-            Debug.LogWarning("Invalid building ID: " + id);
+            return farmSprites;
+        }
+        else if (id == 1)
+        {
+            return WoodCutterSprite;
+        }
+        else
+        {
             return null;
         }
-        return farmSprites[id];
     }
 }

@@ -26,8 +26,15 @@ public class AtWorkSite : MonoBehaviour
         // Logic for when the NPC is at the work site
         Debug.Log("NPC has arrived at the work site for building ID: " + buildingID);
         // You can add more logic here, such as starting work, playing animations, etc.
+        NPCStats npcStats = GetComponent<NPCStats>();
+        string buildingType = BuildingManager.Instance.getBuildingTypeByID(buildingID);
         
-    
+        if (npcStats != null)
+        {
+            npcStats.NPCWorkingBuildingType = buildingType; // Set the building type the NPC is working at
+            Debug.Log("NPC is working at building type: " + npcStats.NPCWorkingBuildingType);
+        }
+
         foreach (SpriteRenderer sr in allRenderers)
             sr.enabled = false;
     }

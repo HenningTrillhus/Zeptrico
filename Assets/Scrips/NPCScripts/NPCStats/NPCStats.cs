@@ -50,6 +50,7 @@ public class NPCStats : MonoBehaviour
 
     public string gender;
     public int NPCid;
+    public string NPCWorkingBuildingType;
 
     public int colorOfClothes; 
 

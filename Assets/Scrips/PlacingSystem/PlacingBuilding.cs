@@ -23,8 +23,8 @@ public class PlacingBuilding : MonoBehaviour
     Vector3 FixMousePosition(Vector3 mousePos)
     {
         Vector3 snappedPos = new Vector3(
-            Mathf.Round(mousePos.x) + 0.5f,
-            Mathf.Round(mousePos.y) + 0.5f,
+            Mathf.Round(mousePos.x),
+            Mathf.Round(mousePos.y),
             0
         );
 
@@ -39,8 +39,8 @@ public class PlacingBuilding : MonoBehaviour
         
         if (IsPosOccupide.Instance.CheckIfPosIsOccupide(position))
         {
-            GameObject newBuilding = Instantiate(BuildingSpriteDataBase.Instance.FarmPrefab, position, Quaternion.identity);
-            WorkerDataBase.instance.workPlaces.Add(new WorkerDataBase.WorkPlace {id = WorkerDataBase.instance.getID(), pos = position, buildingType = "Farm"});
+            GameObject newBuilding = Instantiate(BuildingManager.Instance.prefab, position, Quaternion.identity);
+            WorkerDataBase.instance.workPlaces.Add(new WorkerDataBase.WorkPlace {id = WorkerDataBase.instance.getID(), pos = position, buildingType = BuildingManager.Instance.placingBuildingName});
             BuildingManager.Instance.buildings.Add(new BuildingManager.building { BuildingName = BuildingManager.Instance.placingBuildingName, buildingID = BuildingManager.Instance.placingBuildingid, position = position, width = BuildingManager.Instance.buildingWidth, height = BuildingManager.Instance.buildingHight });
             Debug.Log("Building Placed at: " + position + " with ID: " + BuildingManager.Instance.placingBuildingid);
             for (int i = 0; i < BuildingManager.Instance.buildingHight; i++)
